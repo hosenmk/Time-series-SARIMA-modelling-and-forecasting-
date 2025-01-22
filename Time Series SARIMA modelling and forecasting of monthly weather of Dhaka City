@@ -23,3 +23,16 @@ str(data)         # Inspect the structure
 summary(data)     # Summary statistics
 head(data)        # Preview the first few rows
 
+# Convert 'Year' and 'Month' into a proper Date column
+data$Date <- as.Date(paste(data$Year, data$Month, "01", sep = "-"))
+
+colnames(data) <- c("Year", "Month", "Earth Skin Temperature(c)", "Temperature(c)", 
+                    "Temperature Max(c)", "Temperature Min(c)", 
+                    "Specific Humidity(g/kg)", "Relative Humidity(%)", 
+                    "Precipitation(mm/day)", "Surface Pressure(kPa)", 
+                    "Wind Speed(m/s)")
+
+# Define Variables to Analyze
+variables <- c("Earth Skin Temperature(c)", "Temperature(c)", "Temperature Max(c)", 
+               "Temperature Min(c)", "Specific Humidity(g/kg)", "Relative Humidity(%)", 
+               "Precipitation(mm/day)", "Surface Pressure(kPa)", "Wind Speed(m/s)")
