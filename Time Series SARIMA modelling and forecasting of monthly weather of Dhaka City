@@ -36,3 +36,20 @@ colnames(data) <- c("Year", "Month", "Earth Skin Temperature(c)", "Temperature(c
 variables <- c("Earth Skin Temperature(c)", "Temperature(c)", "Temperature Max(c)", 
                "Temperature Min(c)", "Specific Humidity(g/kg)", "Relative Humidity(%)", 
                "Precipitation(mm/day)", "Surface Pressure(kPa)", "Wind Speed(m/s)")
+
+# Monthly Box Plots with Unique Colors
+month_colors <- rainbow(12)
+for (var in variables) {
+  print(
+    ggplot(data, aes(x = factor(Month), y = .data[[var]], fill = factor(Month))) +
+      geom_boxplot() +
+      scale_fill_manual(values = month_colors) +
+      labs(title = paste("Monthly Box Plot for", var), x = "Month", y = var) +
+      theme_minimal()
+  )
+}
+
+# Time Series Analysis
+for (var in variables) {
+  ts_data <- ts(data[[var]], start = c(min(data$Year), min(data$Month)), frequency = 12)
+
